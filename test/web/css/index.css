@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+body {
+	background: #eee;
+}
+
+#login_panel {
+	float: none;
+	margin-right: auto;
+	margin: 0 auto;
+	margin-top: 200px;
+	background: white;
+	min-width : 300px;
+	padding: 20px;
+	min-width: 300px;
+}
+
+#login_panel form {
+	width: 100%;
+}
+
+#login_panel table {
+	width: 100%;
+}
+
+#login_panel input {
+	width: 100%;
+	maring: 20px;
+}

@@ -1,0 +1,916 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.openkm.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="OKMRepository" targetNamespace="http://ws.openkm.com">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.openkm.com" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.openkm.com">
+  <xs:element name="appVersion" type="tns:appVersion"/>
+  <xs:element name="document" type="tns:document"/>
+  <xs:element name="folder" type="tns:folder"/>
+  <xs:element name="getAppVersion" type="tns:getAppVersion"/>
+  <xs:element name="getAppVersionResponse" type="tns:getAppVersionResponse"/>
+  <xs:element name="getCategoriesFolder" type="tns:getCategoriesFolder"/>
+  <xs:element name="getCategoriesFolderResponse" type="tns:getCategoriesFolderResponse"/>
+  <xs:element name="getMailFolder" type="tns:getMailFolder"/>
+  <xs:element name="getMailFolderResponse" type="tns:getMailFolderResponse"/>
+  <xs:element name="getNodePath" type="tns:getNodePath"/>
+  <xs:element name="getNodePathResponse" type="tns:getNodePathResponse"/>
+  <xs:element name="getNodeUuid" type="tns:getNodeUuid"/>
+  <xs:element name="getNodeUuidResponse" type="tns:getNodeUuidResponse"/>
+  <xs:element name="getPersonalFolder" type="tns:getPersonalFolder"/>
+  <xs:element name="getPersonalFolderResponse" type="tns:getPersonalFolderResponse"/>
+  <xs:element name="getRepositoryUuid" type="tns:getRepositoryUuid"/>
+  <xs:element name="getRepositoryUuidResponse" type="tns:getRepositoryUuidResponse"/>
+  <xs:element name="getRootFolder" type="tns:getRootFolder"/>
+  <xs:element name="getRootFolderResponse" type="tns:getRootFolderResponse"/>
+  <xs:element name="getTemplatesFolder" type="tns:getTemplatesFolder"/>
+  <xs:element name="getTemplatesFolderResponse" type="tns:getTemplatesFolderResponse"/>
+  <xs:element name="getThesaurusFolder" type="tns:getThesaurusFolder"/>
+  <xs:element name="getThesaurusFolderResponse" type="tns:getThesaurusFolderResponse"/>
+  <xs:element name="getTrashFolder" type="tns:getTrashFolder"/>
+  <xs:element name="getTrashFolderResponse" type="tns:getTrashFolderResponse"/>
+  <xs:element name="getUpdateMessage" type="tns:getUpdateMessage"/>
+  <xs:element name="getUpdateMessageResponse" type="tns:getUpdateMessageResponse"/>
+  <xs:element name="hasNode" type="tns:hasNode"/>
+  <xs:element name="hasNodeResponse" type="tns:hasNodeResponse"/>
+  <xs:element name="lockInfo" type="tns:lockInfo"/>
+  <xs:element name="mail" type="tns:mail"/>
+  <xs:element name="note" type="tns:note"/>
+  <xs:element name="purgeTrash" type="tns:purgeTrash"/>
+  <xs:element name="purgeTrashResponse" type="tns:purgeTrashResponse"/>
+  <xs:element name="version" type="tns:version"/>
+  <xs:complexType name="getRepositoryUuid">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getRepositoryUuidResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getMailFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getMailFolderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:folder"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="folder">
+    <xs:complexContent>
+      <xs:extension base="tns:node">
+        <xs:sequence>
+          <xs:element name="hasChildren" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="node">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="author" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" nillable="true" type="tns:folder"/>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="keywords" nillable="true" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="notes" nillable="true" type="tns:note"/>
+      <xs:element minOccurs="0" name="path" type="xs:string"/>
+      <xs:element name="permissions" type="xs:int"/>
+      <xs:element name="subscribed" type="xs:boolean"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="subscriptors" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="uuid" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="note">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="author" type="xs:string"/>
+      <xs:element minOccurs="0" name="date" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="path" type="xs:string"/>
+      <xs:element minOccurs="0" name="text" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="document">
+    <xs:complexContent>
+      <xs:extension base="tns:node">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="actualVersion" type="tns:version"/>
+          <xs:element name="checkedOut" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="cipherName" type="xs:string"/>
+          <xs:element name="convertibleToPdf" type="xs:boolean"/>
+          <xs:element name="convertibleToSwf" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="language" type="xs:string"/>
+          <xs:element minOccurs="0" name="lastModified" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="lockInfo" type="tns:lockInfo"/>
+          <xs:element name="locked" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="mimeType" type="xs:string"/>
+          <xs:element name="signed" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="title" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="version">
+    <xs:sequence>
+      <xs:element name="actual" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="author" type="xs:string"/>
+      <xs:element minOccurs="0" name="checksum" type="xs:string"/>
+      <xs:element minOccurs="0" name="comment" type="xs:string"/>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element name="size" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="lockInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="nodePath" type="xs:string"/>
+      <xs:element minOccurs="0" name="owner" type="xs:string"/>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="mail">
+    <xs:complexContent>
+      <xs:extension base="tns:node">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="attachments" nillable="true" type="tns:document"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="bcc" nillable="true" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="cc" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="content" type="xs:string"/>
+          <xs:element minOccurs="0" name="from" type="xs:string"/>
+          <xs:element minOccurs="0" name="mimeType" type="xs:string"/>
+          <xs:element minOccurs="0" name="receivedDate" type="xs:dateTime"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="reply" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="sentDate" type="xs:dateTime"/>
+          <xs:element name="size" type="xs:long"/>
+          <xs:element minOccurs="0" name="subject" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="to" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="getUpdateMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUpdateMessageResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCategoriesFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCategoriesFolderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:folder"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getThesaurusFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getThesaurusFolderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:folder"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRootFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRootFolderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:folder"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getNodeUuid">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="path" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getNodeUuidResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAppVersion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAppVersionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:appVersion"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="appVersion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="build" type="xs:string"/>
+      <xs:element minOccurs="0" name="extension" type="xs:string"/>
+      <xs:element minOccurs="0" name="maintenance" type="xs:string"/>
+      <xs:element minOccurs="0" name="major" type="xs:string"/>
+      <xs:element minOccurs="0" name="minor" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="hasNode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="path" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="hasNodeResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPersonalFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPersonalFolderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:folder"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTrashFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTrashFolderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:folder"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getNodePath">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="uuid" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getNodePathResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTemplatesFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTemplatesFolderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:folder"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="purgeTrash">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="purgeTrashResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="DatabaseException" type="tns:DatabaseException"/>
+  <xs:complexType name="DatabaseException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RepositoryException" type="tns:RepositoryException"/>
+  <xs:complexType name="RepositoryException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PathNotFoundException" type="tns:PathNotFoundException"/>
+  <xs:complexType name="PathNotFoundException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccessDeniedException" type="tns:AccessDeniedException"/>
+  <xs:complexType name="AccessDeniedException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LockException" type="tns:LockException"/>
+  <xs:complexType name="LockException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getRepositoryUuidResponse">
+    <wsdl:part element="tns:getRepositoryUuidResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAppVersionResponse">
+    <wsdl:part element="tns:getAppVersionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hasNodeResponse">
+    <wsdl:part element="tns:hasNodeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMailFolder">
+    <wsdl:part element="tns:getMailFolder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getThesaurusFolderResponse">
+    <wsdl:part element="tns:getThesaurusFolderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUpdateMessageResponse">
+    <wsdl:part element="tns:getUpdateMessageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AccessDeniedException">
+    <wsdl:part element="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNodeUuidResponse">
+    <wsdl:part element="tns:getNodeUuidResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNodeUuid">
+    <wsdl:part element="tns:getNodeUuid" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAppVersion">
+    <wsdl:part element="tns:getAppVersion" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTemplatesFolderResponse">
+    <wsdl:part element="tns:getTemplatesFolderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPersonalFolder">
+    <wsdl:part element="tns:getPersonalFolder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTrashFolder">
+    <wsdl:part element="tns:getTrashFolder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="LockException">
+    <wsdl:part element="tns:LockException" name="LockException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNodePathResponse">
+    <wsdl:part element="tns:getNodePathResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTrashFolderResponse">
+    <wsdl:part element="tns:getTrashFolderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRepositoryUuid">
+    <wsdl:part element="tns:getRepositoryUuid" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUpdateMessage">
+    <wsdl:part element="tns:getUpdateMessage" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RepositoryException">
+    <wsdl:part element="tns:RepositoryException" name="RepositoryException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRootFolderResponse">
+    <wsdl:part element="tns:getRootFolderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMailFolderResponse">
+    <wsdl:part element="tns:getMailFolderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCategoriesFolder">
+    <wsdl:part element="tns:getCategoriesFolder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCategoriesFolderResponse">
+    <wsdl:part element="tns:getCategoriesFolderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getThesaurusFolder">
+    <wsdl:part element="tns:getThesaurusFolder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DatabaseException">
+    <wsdl:part element="tns:DatabaseException" name="DatabaseException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPersonalFolderResponse">
+    <wsdl:part element="tns:getPersonalFolderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRootFolder">
+    <wsdl:part element="tns:getRootFolder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="purgeTrashResponse">
+    <wsdl:part element="tns:purgeTrashResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="PathNotFoundException">
+    <wsdl:part element="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hasNode">
+    <wsdl:part element="tns:hasNode" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNodePath">
+    <wsdl:part element="tns:getNodePath" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTemplatesFolder">
+    <wsdl:part element="tns:getTemplatesFolder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="purgeTrash">
+    <wsdl:part element="tns:purgeTrash" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="OKMRepository">
+    <wsdl:operation name="getRepositoryUuid">
+      <wsdl:input message="tns:getRepositoryUuid" name="getRepositoryUuid">
+    </wsdl:input>
+      <wsdl:output message="tns:getRepositoryUuidResponse" name="getRepositoryUuidResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getMailFolder">
+      <wsdl:input message="tns:getMailFolder" name="getMailFolder">
+    </wsdl:input>
+      <wsdl:output message="tns:getMailFolderResponse" name="getMailFolderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUpdateMessage">
+      <wsdl:input message="tns:getUpdateMessage" name="getUpdateMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:getUpdateMessageResponse" name="getUpdateMessageResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getCategoriesFolder">
+      <wsdl:input message="tns:getCategoriesFolder" name="getCategoriesFolder">
+    </wsdl:input>
+      <wsdl:output message="tns:getCategoriesFolderResponse" name="getCategoriesFolderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getThesaurusFolder">
+      <wsdl:input message="tns:getThesaurusFolder" name="getThesaurusFolder">
+    </wsdl:input>
+      <wsdl:output message="tns:getThesaurusFolderResponse" name="getThesaurusFolderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRootFolder">
+      <wsdl:input message="tns:getRootFolder" name="getRootFolder">
+    </wsdl:input>
+      <wsdl:output message="tns:getRootFolderResponse" name="getRootFolderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getNodeUuid">
+      <wsdl:input message="tns:getNodeUuid" name="getNodeUuid">
+    </wsdl:input>
+      <wsdl:output message="tns:getNodeUuidResponse" name="getNodeUuidResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAppVersion">
+      <wsdl:input message="tns:getAppVersion" name="getAppVersion">
+    </wsdl:input>
+      <wsdl:output message="tns:getAppVersionResponse" name="getAppVersionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="hasNode">
+      <wsdl:input message="tns:hasNode" name="hasNode">
+    </wsdl:input>
+      <wsdl:output message="tns:hasNodeResponse" name="hasNodeResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPersonalFolder">
+      <wsdl:input message="tns:getPersonalFolder" name="getPersonalFolder">
+    </wsdl:input>
+      <wsdl:output message="tns:getPersonalFolderResponse" name="getPersonalFolderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTrashFolder">
+      <wsdl:input message="tns:getTrashFolder" name="getTrashFolder">
+    </wsdl:input>
+      <wsdl:output message="tns:getTrashFolderResponse" name="getTrashFolderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getNodePath">
+      <wsdl:input message="tns:getNodePath" name="getNodePath">
+    </wsdl:input>
+      <wsdl:output message="tns:getNodePathResponse" name="getNodePathResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTemplatesFolder">
+      <wsdl:input message="tns:getTemplatesFolder" name="getTemplatesFolder">
+    </wsdl:input>
+      <wsdl:output message="tns:getTemplatesFolderResponse" name="getTemplatesFolderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="purgeTrash">
+      <wsdl:input message="tns:purgeTrash" name="purgeTrash">
+    </wsdl:input>
+      <wsdl:output message="tns:purgeTrashResponse" name="purgeTrashResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:LockException" name="LockException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OKMRepositorySoapBinding" type="tns:OKMRepository">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getRepositoryUuid">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRepositoryUuid">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRepositoryUuidResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getMailFolder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMailFolder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMailFolderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUpdateMessage">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUpdateMessage">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUpdateMessageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getCategoriesFolder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getCategoriesFolder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getCategoriesFolderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getThesaurusFolder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getThesaurusFolder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getThesaurusFolderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRootFolder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRootFolder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRootFolderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getNodeUuid">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getNodeUuid">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getNodeUuidResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAppVersion">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAppVersion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAppVersionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="hasNode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="hasNode">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="hasNodeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPersonalFolder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPersonalFolder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPersonalFolderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTrashFolder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getTrashFolder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTrashFolderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getNodePath">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getNodePath">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getNodePathResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTemplatesFolder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getTemplatesFolder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTemplatesFolderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="purgeTrash">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="purgeTrash">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="purgeTrashResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="LockException">
+        <soap:fault name="LockException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OKMRepository">
+    <wsdl:port binding="tns:OKMRepositorySoapBinding" name="OKMRepositoryPort">
+      <soap:address location="http://localhost:8080/OpenKM/services/OKMRepository"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,750 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.openkm.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="OKMAuth" targetNamespace="http://ws.openkm.com">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.openkm.com" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.openkm.com">
+  <xs:element name="getGrantedRoles" type="tns:getGrantedRoles"/>
+  <xs:element name="getGrantedRolesResponse" type="tns:getGrantedRolesResponse"/>
+  <xs:element name="getGrantedUsers" type="tns:getGrantedUsers"/>
+  <xs:element name="getGrantedUsersResponse" type="tns:getGrantedUsersResponse"/>
+  <xs:element name="getMail" type="tns:getMail"/>
+  <xs:element name="getMailResponse" type="tns:getMailResponse"/>
+  <xs:element name="getName" type="tns:getName"/>
+  <xs:element name="getNameResponse" type="tns:getNameResponse"/>
+  <xs:element name="getRoles" type="tns:getRoles"/>
+  <xs:element name="getRolesByUser" type="tns:getRolesByUser"/>
+  <xs:element name="getRolesByUserResponse" type="tns:getRolesByUserResponse"/>
+  <xs:element name="getRolesResponse" type="tns:getRolesResponse"/>
+  <xs:element name="getUsers" type="tns:getUsers"/>
+  <xs:element name="getUsersByRole" type="tns:getUsersByRole"/>
+  <xs:element name="getUsersByRoleResponse" type="tns:getUsersByRoleResponse"/>
+  <xs:element name="getUsersResponse" type="tns:getUsersResponse"/>
+  <xs:element name="grantRole" type="tns:grantRole"/>
+  <xs:element name="grantRoleResponse" type="tns:grantRoleResponse"/>
+  <xs:element name="grantUser" type="tns:grantUser"/>
+  <xs:element name="grantUserResponse" type="tns:grantUserResponse"/>
+  <xs:element name="login" type="tns:login"/>
+  <xs:element name="loginResponse" type="tns:loginResponse"/>
+  <xs:element name="logout" type="tns:logout"/>
+  <xs:element name="logoutResponse" type="tns:logoutResponse"/>
+  <xs:element name="revokeRole" type="tns:revokeRole"/>
+  <xs:element name="revokeRoleResponse" type="tns:revokeRoleResponse"/>
+  <xs:element name="revokeUser" type="tns:revokeUser"/>
+  <xs:element name="revokeUserResponse" type="tns:revokeUserResponse"/>
+  <xs:complexType name="grantUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="nodePath" type="xs:string"/>
+      <xs:element minOccurs="0" name="user" type="xs:string"/>
+      <xs:element name="permissions" type="xs:int"/>
+      <xs:element name="recursive" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="grantUserResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="login">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="user" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getMail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="user" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getMailResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getGrantedUsers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="nodePath" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getGrantedUsersResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:integerPair"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="integerPair">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="key" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getGrantedRoles">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="nodePath" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getGrantedRolesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:integerPair"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="user" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUsersByRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="role" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUsersByRoleResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="revokeRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="nodePath" type="xs:string"/>
+      <xs:element minOccurs="0" name="role" type="xs:string"/>
+      <xs:element name="permissions" type="xs:int"/>
+      <xs:element name="recursive" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="revokeRoleResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getRoles">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRolesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="grantRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="nodePath" type="xs:string"/>
+      <xs:element minOccurs="0" name="role" type="xs:string"/>
+      <xs:element name="permissions" type="xs:int"/>
+      <xs:element name="recursive" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="grantRoleResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getUsers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUsersResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="revokeUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="nodePath" type="xs:string"/>
+      <xs:element minOccurs="0" name="user" type="xs:string"/>
+      <xs:element name="permissions" type="xs:int"/>
+      <xs:element name="recursive" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="revokeUserResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getRolesByUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="user" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRolesByUserResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="logout">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="logoutResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="DatabaseException" type="tns:DatabaseException"/>
+  <xs:complexType name="DatabaseException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PathNotFoundException" type="tns:PathNotFoundException"/>
+  <xs:complexType name="PathNotFoundException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccessDeniedException" type="tns:AccessDeniedException"/>
+  <xs:complexType name="AccessDeniedException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RepositoryException" type="tns:RepositoryException"/>
+  <xs:complexType name="RepositoryException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrincipalAdapterException" type="tns:PrincipalAdapterException"/>
+  <xs:complexType name="PrincipalAdapterException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="grantUser">
+    <wsdl:part element="tns:grantUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="login">
+    <wsdl:part element="tns:login" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="PrincipalAdapterException">
+    <wsdl:part element="tns:PrincipalAdapterException" name="PrincipalAdapterException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGrantedUsersResponse">
+    <wsdl:part element="tns:getGrantedUsersResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGrantedRoles">
+    <wsdl:part element="tns:getGrantedRoles" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMailResponse">
+    <wsdl:part element="tns:getMailResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getName">
+    <wsdl:part element="tns:getName" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="revokeRole">
+    <wsdl:part element="tns:revokeRole" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="logoutResponse">
+    <wsdl:part element="tns:logoutResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AccessDeniedException">
+    <wsdl:part element="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGrantedRolesResponse">
+    <wsdl:part element="tns:getGrantedRolesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRoles">
+    <wsdl:part element="tns:getRoles" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersByRoleResponse">
+    <wsdl:part element="tns:getUsersByRoleResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsers">
+    <wsdl:part element="tns:getUsers" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="revokeUser">
+    <wsdl:part element="tns:revokeUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="logout">
+    <wsdl:part element="tns:logout" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMail">
+    <wsdl:part element="tns:getMail" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="revokeUserResponse">
+    <wsdl:part element="tns:revokeUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRolesResponse">
+    <wsdl:part element="tns:getRolesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RepositoryException">
+    <wsdl:part element="tns:RepositoryException" name="RepositoryException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="grantRoleResponse">
+    <wsdl:part element="tns:grantRoleResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNameResponse">
+    <wsdl:part element="tns:getNameResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGrantedUsers">
+    <wsdl:part element="tns:getGrantedUsers" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="revokeRoleResponse">
+    <wsdl:part element="tns:revokeRoleResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part element="tns:loginResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersByRole">
+    <wsdl:part element="tns:getUsersByRole" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DatabaseException">
+    <wsdl:part element="tns:DatabaseException" name="DatabaseException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersResponse">
+    <wsdl:part element="tns:getUsersResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="PathNotFoundException">
+    <wsdl:part element="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="grantRole">
+    <wsdl:part element="tns:grantRole" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRolesByUserResponse">
+    <wsdl:part element="tns:getRolesByUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="grantUserResponse">
+    <wsdl:part element="tns:grantUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRolesByUser">
+    <wsdl:part element="tns:getRolesByUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="OKMAuth">
+    <wsdl:operation name="grantUser">
+      <wsdl:input message="tns:grantUser" name="grantUser">
+    </wsdl:input>
+      <wsdl:output message="tns:grantUserResponse" name="grantUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <wsdl:input message="tns:login" name="login">
+    </wsdl:input>
+      <wsdl:output message="tns:loginResponse" name="loginResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getMail">
+      <wsdl:input message="tns:getMail" name="getMail">
+    </wsdl:input>
+      <wsdl:output message="tns:getMailResponse" name="getMailResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:PrincipalAdapterException" name="PrincipalAdapterException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getGrantedUsers">
+      <wsdl:input message="tns:getGrantedUsers" name="getGrantedUsers">
+    </wsdl:input>
+      <wsdl:output message="tns:getGrantedUsersResponse" name="getGrantedUsersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getGrantedRoles">
+      <wsdl:input message="tns:getGrantedRoles" name="getGrantedRoles">
+    </wsdl:input>
+      <wsdl:output message="tns:getGrantedRolesResponse" name="getGrantedRolesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getName">
+      <wsdl:input message="tns:getName" name="getName">
+    </wsdl:input>
+      <wsdl:output message="tns:getNameResponse" name="getNameResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:PrincipalAdapterException" name="PrincipalAdapterException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersByRole">
+      <wsdl:input message="tns:getUsersByRole" name="getUsersByRole">
+    </wsdl:input>
+      <wsdl:output message="tns:getUsersByRoleResponse" name="getUsersByRoleResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:PrincipalAdapterException" name="PrincipalAdapterException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="revokeRole">
+      <wsdl:input message="tns:revokeRole" name="revokeRole">
+    </wsdl:input>
+      <wsdl:output message="tns:revokeRoleResponse" name="revokeRoleResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRoles">
+      <wsdl:input message="tns:getRoles" name="getRoles">
+    </wsdl:input>
+      <wsdl:output message="tns:getRolesResponse" name="getRolesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:PrincipalAdapterException" name="PrincipalAdapterException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="grantRole">
+      <wsdl:input message="tns:grantRole" name="grantRole">
+    </wsdl:input>
+      <wsdl:output message="tns:grantRoleResponse" name="grantRoleResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsers">
+      <wsdl:input message="tns:getUsers" name="getUsers">
+    </wsdl:input>
+      <wsdl:output message="tns:getUsersResponse" name="getUsersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:PrincipalAdapterException" name="PrincipalAdapterException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="revokeUser">
+      <wsdl:input message="tns:revokeUser" name="revokeUser">
+    </wsdl:input>
+      <wsdl:output message="tns:revokeUserResponse" name="revokeUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:PathNotFoundException" name="PathNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRolesByUser">
+      <wsdl:input message="tns:getRolesByUser" name="getRolesByUser">
+    </wsdl:input>
+      <wsdl:output message="tns:getRolesByUserResponse" name="getRolesByUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:PrincipalAdapterException" name="PrincipalAdapterException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <wsdl:input message="tns:logout" name="logout">
+    </wsdl:input>
+      <wsdl:output message="tns:logoutResponse" name="logoutResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RepositoryException" name="RepositoryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DatabaseException" name="DatabaseException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OKMAuthSoapBinding" type="tns:OKMAuth">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="grantUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="grantUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="grantUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="login">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="loginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getMail">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMail">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="PrincipalAdapterException">
+        <soap:fault name="PrincipalAdapterException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getGrantedUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getGrantedUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getGrantedUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getGrantedRoles">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getGrantedRoles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getGrantedRolesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getName">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="PrincipalAdapterException">
+        <soap:fault name="PrincipalAdapterException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersByRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUsersByRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsersByRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="PrincipalAdapterException">
+        <soap:fault name="PrincipalAdapterException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="revokeRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="revokeRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="revokeRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRoles">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRoles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRolesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="PrincipalAdapterException">
+        <soap:fault name="PrincipalAdapterException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="grantRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="grantRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="grantRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="PrincipalAdapterException">
+        <soap:fault name="PrincipalAdapterException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="revokeUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="revokeUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="revokeUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccessDeniedException">
+        <soap:fault name="AccessDeniedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PathNotFoundException">
+        <soap:fault name="PathNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRolesByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRolesByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRolesByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="PrincipalAdapterException">
+        <soap:fault name="PrincipalAdapterException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="logout">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="logoutResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RepositoryException">
+        <soap:fault name="RepositoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseException">
+        <soap:fault name="DatabaseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OKMAuth">
+    <wsdl:port binding="tns:OKMAuthSoapBinding" name="OKMAuthPort">
+      <soap:address location="http://localhost:8080/OpenKM/services/OKMAuth"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
